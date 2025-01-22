@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/css/auth.css">
+</head>
+<body>
+    <div class="login">
+        <h1>LOG IN</h1>
+        <input type="text" placeholder="Enter Email" id="email">
+        <input type="password" placeholder="Enter Password" id="password">
+        <button onclick="logIn()">Log In</button>
+        <span>Don't have an Account? <a href="{% url 'signup' %}">Sign Up</a></span>
+    </div>
+</body>
+
+<script>
+    function logIn(){
+        let email = $('#email').val();
+        let password = $('#password').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url "login" %}',
+            data: {
+                email: email,
+                password: password,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            success: function(data){
+                console.log(data)
+                alert('Login Success')
+                window.location.href = "{% url 'startPage' %}"
+            },
+            error: function(data){
+                console.log('Error')
+            }
+        })
+    }
+</script>
+
+
+</html>

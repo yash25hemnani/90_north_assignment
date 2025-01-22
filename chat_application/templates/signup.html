@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/css/auth.css">
+</head>
+<body>
+    <div class="login">
+        <h1>SIGN UP</h1>
+        <input type="text" placeholder="Enter Email" id="email">
+        <input type="text" placeholder="Enter Username" id="username">
+        <input type="password" placeholder="Enter Password" id="password1">
+        <input type="password" placeholder="Confirm Password" id="password2">
+        <button onclick="signUp()">Sign Up</button>
+        <span>Already have an Account? <a href="{% url 'login' %}">Log In</a></span>
+    </div>
+</body>
+
+<script>
+    function signUp(){
+        let email = $('#email').val();
+        let username = $('#username').val();
+        let password1 = $('#password1').val();
+        let password2 = $('#password2').val();
+
+        if (password1 !== password2){
+            alert("Passwords do not match!")
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url "signup" %}',
+            data: {
+                email: email,
+                username: username,
+                password1: password1,
+                password2: password2,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            success: function(data){
+                console.log(data)
+                alert('User Added')
+                window.location.href = "{% url 'startPage' %}"
+            },
+            error: function(data){
+                console.log('Error')
+            }
+        })
+    }
+</script>
+
+</html>
