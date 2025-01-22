@@ -1,0 +1,91 @@
+@import url();
+
+:root {
+    --base-clr: #11121a;
+    --text-clr: #e6e6ef;
+    --line-clr: #e6e6ef;
+    --secondary-text-clr: #dbdbee;
+    --accent-clr: #9090ec;
+    --hover-clr: #454547;
+    --message-clr: #4d4dfc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: Poppins, 'Segoe UI';
+    line-height: 1.5rem;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: var(--base-clr);
+    color: var(--text-clr);
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    margin-top: 10px;
+}
+
+.login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; 
+    max-width: 600px; 
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line-clr);
+    border-radius: 1em;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .login {
+        width: 60%; 
+    }
+}
+
+@media (min-width: 1024px) {
+    .login {
+        width: 40%; 
+    }
+}
+
+.login > h1 {
+    padding: 10px;
+    margin: 5px;
+}
+
+.form-input {
+    border: 1px solid var(--line-clr);
+    border-radius: 1em;
+    padding: 10px;
+    margin: 5px;
+    background: none;
+    font-size: medium;
+    color: var(--text-clr);
+}
+
+.login > button {
+    border: 1px solid var(--line-clr);
+    border-radius: 1em;
+    padding: 10px 15px; 
+    margin: 5px; 
+    background: var(--text-clr); 
+    color: black; 
+    font-size: 1rem; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.login > button:hover {
+    background: var(--message-clr); 
+    color: var(--text-clr); 
+}
